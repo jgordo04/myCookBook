@@ -1,0 +1,24 @@
+<div class="page-header">
+  <h1>Submit a recipe</h1>
+</div>
+<form class="form-group url-search" action="/cookbook/new/scrape" method="get">
+ <p>
+   <label for="name">Name:</label>
+   <input type="text" name="name" value="">
+ </p>
+ <p>
+   <label for="image">URL:</label>
+   <input id="urlValue" type="text" name="url" value="">
+ </p>
+ <p>
+   <label for="genre">Category:</label>
+   <input type="text" name="category" value="">
+ </p>
+ <button type="submit" name="submit">Submit</button>
+</form>
+
+<div class="scrapeResults">
+
+</div>
+
+<script src="/main.js"></script>
