@@ -1,13 +1,33 @@
 <h2>The Book</h2>
 
-<ul>
+<!-- <ul>
   {{#each recipes}}
     <li>{{name}} {{user}}</li>
   {{/each}}
-</ul>
+</ul> -->
+<h4>
+  <ul style="list-style: none;">
+    {{#each tableOfContents }}
+      <li>{{@key}}</li>
+      <ul style="list-style: none;">
+        {{#each this }}
+        <div class="recipe-div">
+          <form class="" action="/cookbook/delete/{{this.id}}" method="post">
+            <a class="recipe-link" href="/cookbook/{{this.id}}">{{this.name}}</a>
+            <button type="submit" name="delete" class="btn btn-default">Delete</button>
+          </form>
+        </div>
+        {{/each }}
+      </ul>
+    {{/each}}
+  </ul>
+</h4>
 
-<ul>
-  {{#each cats}}
-    <li>{{this}}<li>
-  {{/each}}
-</ul>
+<h3>Add recipe</h3>
+<form class="form-group url-search" action="/cookbook/new/scrape" method="post">
+ <p>
+   <label for="image">URL:</label>
+   <input id="urlValue" type="text" name="url" value="">
+ </p>
+ <button type="submit" name="submit">Submit</button>
+</form>

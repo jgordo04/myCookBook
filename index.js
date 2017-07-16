@@ -42,7 +42,7 @@ app.use('/cookbook', cookbookController)
 //   name: 'Test Recipe',
 //   user: 'admin',
 //   description: 'This is a test recipe',
-//   category: 'any cat',
+//   category: 'another cat',
 //   ingredients: ['one','two','three'],
 //   directions: ['first','second','third'],
 //   comments: ['some comment']

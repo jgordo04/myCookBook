@@ -17,16 +17,20 @@
               <li><a href="/signup">Sign up</a></li>
           {{/if}}
       </ul>
-      <h1> myCookBook</h1>
+      <h1>myCookBook</h1>
     <!-- </nav> -->
     <nav class="navbar navbar-default">
-      <a class="navbar-brand" href="/">Home</a>
+      {{#if user}}
       <a class="navbar-brand" href="/cookbook">Recipes</a>
       <a class="navbar-brand" href="/cookbook/new">Add recipe</a>
+      {{/if}}
     </nav>
   </nav>
+  <div class="body-class">
     <!-- Body -->
     {{{ body }}}
+  </div>
+
     <!-- Footer -->
   </br>
   <nav class="navbar navbar-default navbar-fixed-bottom">

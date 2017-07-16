@@ -1,0 +1,36 @@
+<h2>{{name}}</h2>
+
+<div class="singleRecipe">
+  {{description}}
+  <h4>Ingredients</h4>
+  <ul>
+    {{#each ingredients}}
+      <li>{{this}}</li>
+    {{/each}}
+  </ul>
+
+  <h4>Directions</h4>
+  <ol>
+    {{#each directions}}
+      <li>{{this}}</li>
+    {{/each}}
+  </ol>
+
+  <h4>Comments</h4>
+  <ul style="list-style: none;">
+    {{#each comments}}
+      <li>{{this.comment}}</li>
+    {{/each}}
+  </ul>
+
+  <div class="input-group new-comment">
+    <h4>New Comment:</h4>
+    <form action="/cookbook/{{ id }}" method="post">
+      <p>
+        <textarea name="comment" rows="3" cols="80"></textarea>
+      </p>
+      <button type="submit" name="submit">Submit</button>
+    </form>
+  </div>
+
+</div>

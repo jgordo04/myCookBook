@@ -1,0 +1,52 @@
+<div class="page-header">
+  <h1>Submit a recipe</h1>
+</div>
+<form class="scrapeResults" action="save" method="post">
+  <p>
+    <button type="submit" name="save">Save Recipe</button>
+  </p>
+  <p>
+    <label for="titleLabel">Title</label>
+    <textarea name="title" rows="1" cols="80" required>{{recipe.name}}</textarea>
+  </p>
+  <p>
+    <label for="categoryLabel">Category</label>
+    <select name="category" cols="60">
+      <option value="Appetizer" >Appetizer</option>
+      <option value="Veggie">Veggie</option>
+      <option value="Meat">Meat</option>
+      <option value="Side dish">Side dish</option>
+      <option value="Dessert">Dessert</option>
+    </select>
+  </p>
+  <p>
+    <label for="ingredientsTitle">Ingredients</label>
+    <ul>
+        <textarea name="ingredients" rows="10" cols="80" required>
+          {{#each recipe.ingredients}}
+            {{this}}
+          {{/each}}
+        </textarea>
+    </ul>
+
+  </p>
+  <p>
+    <label for="directionsTitle">Directions</label>
+    <ol>
+      <textarea name="directions" rows="10" cols="80" required>
+        {{#each recipe.directions}}
+          {{this}}
+        {{/each}}
+      </textarea>
+    </ol>
+  </p>
+  <p>
+    <label for="descriptionLabel">Description</label>
+  </p>
+  <p>
+    <textarea name="description" rows="2" cols="80"></textarea>
+  </p>
+  <p>
+    <button type="submit" name="save">Save Recipe</button>
+  </p>
+</form>
