@@ -6,7 +6,9 @@ const bodyParser = require('body-parser')
 const passport = require('passport')
 const LocalStrategy = require('passport-local').Strategy
 
-mongoose.connect('mongodb://admin:admin1234!@cluster0-shard-00-00-sdhmz.mongodb.net:27017,cluster0-shard-00-01-sdhmz.mongodb.net:27017,cluster0-shard-00-02-sdhmz.mongodb.net:27017/myCookBook>?ssl=true&replicaSet=Cluster0-shard-0&authSource=admin')
+// mongoose.connect('mongodb://admin:admin1234!@cluster0-shard-00-00-sdhmz.mongodb.net:27017,cluster0-shard-00-01-sdhmz.mongodb.net:27017,cluster0-shard-00-02-sdhmz.mongodb.net:27017/myCookBook>?ssl=true&replicaSet=Cluster0-shard-0&authSource=admin')
+
+mongoose.connect('mongodb://admin:admin1234@ds163232.mlab.com:63232/mycookbook')
 
 const app = express()
 const appController = require('./routes/index.js')
