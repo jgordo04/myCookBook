@@ -10,14 +10,23 @@
     {{#each tableOfContents }}
       <li>{{@key}}</li>
       <ul style="list-style: none;">
+        <div class="row">
         {{#each this }}
-        <div class="recipe-div">
-          <form class="" action="/cookbook/delete/{{this.id}}" method="post">
-            <a class="recipe-link" href="/cookbook/{{this.id}}">{{this.name}}</a>
-            <button type="submit" name="delete" class="btn btn-default">Delete</button>
-          </form>
-        </div>
+          <div class="col-xs-2 col-md-1">
+            <div class="thumbnail clear">
+              <a class="recipe-link clear" href="/cookbook/{{this.id}}">
+                <img src="{{this.image}}">
+                <div class="caption clear">
+                  <h5 class="clear">{{this.name}}</h5>
+                </div>
+              </a>
+                <form class="" action="/cookbook/delete/{{this.id}}" method="post">
+                  <button type="submit" name="delete" class="clear btn btn-default">Delete</button>
+                </form>
+            </div>
+          </div>
         {{/each }}
+        </div>
       </ul>
     {{/each}}
   </ul>
@@ -28,6 +37,21 @@
  <p>
    <label for="image">URL:</label>
    <input id="urlValue" type="text" name="url" value="">
+   <button type="submit" name="submit">Submit</button>
  </p>
- <button type="submit" name="submit">Submit</button>
+
 </form>
+
+<form class="new-recipe-search" action="/cookbook/new/api" method="get">
+  <p>
+    <label for="search">Search for a recipe:</label>
+    <input type="text" name="searchCriteria" placeholder="Search">
+    <button type="submit">Search</button>
+  </p>
+</form>
+
+<div class="searchResultsApp">
+
+</div>
+
+<script src="/main.js"></script>

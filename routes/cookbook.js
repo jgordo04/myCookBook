@@ -3,6 +3,7 @@ const request = require('request')
 const cheerio = require('cheerio')
 const passport = require('passport')
 const fs = require('fs');
+const searchFunction = require('../public/searchFunction.js')
 // const scrapeResults = require('../public/scrapeResults.js')
 
 const cookbookController = express.Router()
@@ -57,10 +58,10 @@ cookbookController.post('/new/scrape', (req,res) => {
     if (!error){
       var $ = cheerio.load(html)
       // var temp = $.html()
-      var temp = false
-      if ( $.html() && temp) {
+      if ( $.html()) {
         let j = 1
         if ($('.ingredients')) {
+          console.log("here1")
           let singleIngredient = $('.ingredients').children().first()
           while ( singleIngredient.text()){
             if ( singleIngredient.text().trim() !== "" ){
@@ -71,6 +72,17 @@ cookbookController.post('/new/scrape', (req,res) => {
             singleIngredient = singleIngredient.next()
           }
         }
+        if ($('.listIngredients')) {
+          let singleIngredient = $('.listIngredients').children().first()
+          console.log(singleIngredient.text())
+          while ( singleIngredient.text()){
+            if ( singleIngredient.text().trim() !== "" ){
+              recipe.ingredients.push(singleIngredient.text().trim())
+            }
+            singleIngredient = singleIngredient.next()
+          }
+        }
+
         let i = 1
         if ($(".instructions")) {
           let singleInstruction = $('.instructions').children().first()
@@ -106,6 +118,17 @@ cookbookController.post('/new/scrape', (req,res) => {
           // }
           ///////////////////////////////
         }
+        if ($(".recipeDsList")) {
+          let singleInstruction = $('.instructions').children().first()
+          while ( singleInstruction.text()){
+            if ( singleInstruction.text().trim() !== "" ){
+              console.log("instructions: " + i)
+              i++
+              recipe.directions.push(singleInstruction.text().trim())
+            }
+            singleInstruction = singleInstruction.next()
+          }
+        }
       }
       else {
         if ($(".ingredient-list")){
@@ -121,6 +144,7 @@ cookbookController.post('/new/scrape', (req,res) => {
           })
         }
         else if ($(".ingredients")) {
+          console.log("here2")
           let ingredients = $(".ingredients").filter(function (){
             let a = $(this)
             let singleIngredient = a.children().first()
@@ -175,12 +199,27 @@ cookbookController.post('/new/scrape', (req,res) => {
 
 })
 
+cookbookController.post('/new/api', (req,res) => {
+
+  let recipe = new Recipe()
+  recipe.name = req.body.name
+  recipe.user = req.user.username
+  req.body.ingredients.split('\n').forEach((ingredient,i) => {
+    recipe.ingredients.push(ingredient)
+  })
+  recipe.image = req.body.imageUrl
+  recipe.directions.push(req.body.url)
+
+  res.render('cookbook/recipe', {user:req.user, recipe})
+})
+
 cookbookController.post('/new/save', (req,res) => {
   let recipe = new Recipe()
   recipe.name = req.body.title
   recipe.category = req.body.category
   recipe.description = req.body.description
   recipe.user = req.user.username
+  recipe.image = req.body.image
   req.body.ingredients.split('\n').forEach((ingredient,i) => {
     if ( ingredient.trim() !== "" ){
       recipe.ingredients.push(ingredient.trim())
@@ -191,6 +230,7 @@ cookbookController.post('/new/save', (req,res) => {
       recipe.directions.push(direction.trim())
     }
   })
+  console.log(recipe)
   recipe.save()
   res.redirect('/')
 })

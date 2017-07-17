@@ -5,10 +5,25 @@
  <p>
    <label for="image">URL:</label>
    <input id="urlValue" type="text" name="url" value="">
+   <button type="submit" name="submit">Submit</button>
  </p>
- <button type="submit" name="submit">Submit</button>
+
 </form>
 
 <div class="scrapeResults">
 
 </div>
+
+<form class="new-recipe-search" action="/cookbook/new/api" method="get">
+  <p>
+    <label for="search">Search for a recipe:</label>
+    <input type="text" name="searchCriteria" placeholder="Search">
+    <button type="submit">Search</button>
+  </p>
+</form>
+
+<div class="searchResultsApp">
+
+</div>
+
+<script src="/main.js"></script>
