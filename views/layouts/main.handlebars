@@ -9,6 +9,12 @@
   <body>
     <!-- Header -->
     <nav class="navbar navbar-default navbar-fixed-top title">
+      <a href="/">
+        <button type="button" class="btn btn-default" aria-label="Left Align">
+          <span class="glyphicon glyphicon-home" aria-hidden="true"></span>
+        </button>
+      </a>
+
       <ul class="nav navbar-nav navbar-right">
           {{#if user}}
               <li> <a href="/users/{{user.username}}"> Hello, {{user.username}} </a> </li>
@@ -17,9 +23,12 @@
               <li><a href="/signup">Sign up</a></li>
           {{/if}}
       </ul>
-      <h1>myCookBook</h1>
+      <div class="center">
+        <h1>myCookBook</h1>
+      </div>
+
     <!-- </nav> -->
-    <nav class="navbar navbar-default">
+    <nav class="navbar navbar-default center">
       {{#if user}}
       <a class="navbar-brand" href="/cookbook">Recipes</a>
       <a class="navbar-brand" href="/cookbook/new">Add recipe</a>

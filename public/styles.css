@@ -1,5 +1,5 @@
 body {
-  padding-top: 130px;
+  padding-top: 170px;
   padding-bottom: 700px;
   padding-left: 20px;
   padding-right: 20px;
@@ -64,4 +64,7 @@ select {
 }
 .caption {
   color: white;
+}
+.center {
+  text-align: center;
 }
