@@ -18,7 +18,7 @@ cookbookController.get('/new', (req,res) => {
 
 cookbookController.get('/', (req,res) => {
   if ( req.user ){
-    Recipe.find({})
+    Recipe.find({user: req.user.username})
       .distinct('category')
       .exec( (err, distCats ) => {
 
